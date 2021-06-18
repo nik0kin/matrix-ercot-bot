@@ -1,0 +1,6 @@
+{
+  "homeserverUrl": "https://localhost",
+  "matrixAccessToken": "YourSecretAccessToken",
+  "pollFrequency": 300,
+  "autoJoin": true
+}

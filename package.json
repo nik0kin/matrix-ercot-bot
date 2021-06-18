@@ -1,0 +1,59 @@
+{
+  "name": "matrix-ercot-bot",
+  "description": "A chatbot that notifies about the Texas electrical grid reliability",
+  "version": "0.1.0-dev",
+  "author": "Nik0kin",
+  "bugs": {
+    "url": "https://github.com/nik0kin/matrix-ercot-bot/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "marked": "^2.0.6",
+    "matrix-bot-sdk": "^0.5.18",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.12",
+    "@types/lodash": "^4.14.170",
+    "@types/marked": "^2.0.3",
+    "@types/node": "^11.10.5",
+    "@types/node-fetch": "^2.5.8",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0",
+    "ts-jest": "^27.0.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.3.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/nik0kin/matrix-ercot-bot",
+  "keywords": [
+    "Bot",
+    "Matrix",
+    "ERCOT"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nik0kin/matrix-ercot-bot.git"
+  },
+  "scripts": {
+    "build": "tsc --module commonjs",
+    "build:watch": "tsc --module commonjs -w",
+    "coverage": "jest --collectCoverageFrom=src/**/*.ts --coverage",
+    "dev": "nodemon src/bootstrap.ts --dryrun",
+    "generate-region-list": "ts-node src/generate-region-list.ts",
+    "lint": "eslint . --ext .ts",
+    "start": "ts-node src/bootstrap.ts",
+    "test": "jest --watch"
+  },
+  "types": "dist/index.d.ts"
+}
