@@ -9,7 +9,7 @@ function headers(accept = 'text/html') {
   };
 }
 
-// Adapted from grid.ts in Gist by @danopia
+// Adapted from grid.ts in Gist by @danopia (MIT)
 //  https://gist.github.com/danopia/c0c4313b4809d565af7c7738bcdbeec7
 export async function getScrapedErcotData(): Promise<[number, number]> {
   const demandCapacity: [number, number] = [-1, -1];

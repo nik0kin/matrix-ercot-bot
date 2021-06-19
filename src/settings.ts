@@ -30,9 +30,18 @@ export interface Settings {
    */
   dryRun?: boolean;
   /**
-   * Frequency of the bot polling PinballMap's API (in seconds)
+   * Frequency of the bot scraping ERCOT for stats (in seconds)
    */
   pollFrequency: number;
+  /**
+   * Daily ERCOT status messages at given times
+   *   Defaults to `[]` (no notifications)
+   */
+  notifications?: Array<{
+    tz?: 'string';
+    hour: number;
+    minute: number;
+  }>;
   /**
    * Should the bot auto accept invites to rooms?
    *   Defaults to `false`

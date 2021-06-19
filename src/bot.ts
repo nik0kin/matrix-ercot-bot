@@ -3,18 +3,16 @@ import { MatrixClient } from 'matrix-bot-sdk';
 import { helpCommand } from './commands/help';
 import { statusCommand } from './commands/status';
 // import { createError } from './error';
-import { createMatrixClient, sendBotReply } from './matrix-bot';
+import { setupDailyNotifications } from './daily';
 import { getScrapedErcotData } from './ercot-scrape';
+import { createMatrixClient, sendBotReply } from './matrix-bot';
 import { Settings, SettingsWithDefaults } from './settings';
-import { checkDaily } from './daily';
 
 let lastDemandCapacity: [number, number] = [-1, -1];
 
 async function poll(settings: SettingsWithDefaults, botClient: MatrixClient) {
   try {
     lastDemandCapacity = await getScrapedErcotData();
-
-    checkDaily(botClient, settings, lastDemandCapacity);
   } catch (e) {
     console.error(
       'An error occured while scraping http://www.ercot.com/content/cdr/html/real_time_system_conditions.html',
@@ -40,6 +38,7 @@ export async function startBot(userSettings: Settings) {
   const settings: SettingsWithDefaults = {
     storageFile: 'bot-storage.json',
     promptWords: ['!ercot'],
+    notifications: [],
     autoJoin: false,
     dryRun: false,
     ...userSettings,
@@ -100,6 +99,8 @@ export async function startBot(userSettings: Settings) {
       );
     }
   });
+
+  setupDailyNotifications(settings, botClient, () => lastDemandCapacity);
 
   poll(settings, botClient);
 }
